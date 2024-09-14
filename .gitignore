@@ -1,3 +1,4 @@
 /build
 /main.spec
 /__pycache__
+*.pdf
