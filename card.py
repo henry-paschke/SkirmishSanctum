@@ -85,6 +85,11 @@ class Card:
                 if circle != None and (mouse_pos[0] - (self.position[0] + circle[0] - self.size[0] // 2)) ** 2 + (mouse_pos[1] - (self.position[1] + circle[1]  - self.size[1] // 2)) ** 2 < CIRCLE_RADIUS ** 2:
                     self.circles[i] = None
 
+    def delete_check(self, pos, camera):
+        if not self.check_is_colliding(pos, camera):
+            return False
+        return True
+
     def click(self, pos, camera, button, mode_index):
         if not self.check_is_colliding(pos, camera):
             return

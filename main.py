@@ -72,6 +72,11 @@ while True:
             if event.key == pg.K_l:
                 cards = pickle.load(open("cards.army", "rb"))
 
+            if event.key == pg.K_DELETE:
+                for card in cards.copy():
+                    if card.delete_check(mouse_pos, camera):
+                        cards.remove(card)
+
         if event.type == pg.MOUSEBUTTONDOWN:
             for card in cards:
                 card.click(mouse_pos, camera, event.button, mode_index)
