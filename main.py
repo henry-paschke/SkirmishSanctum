@@ -18,8 +18,8 @@ pg.display.set_caption("Skirmish Sanctum")
 cards = []
 preview_cards = []
 
-PREVIEW_WIDTH = 747 / 2
-PREVIEW_HEIGHT = 1050 / 2
+PREVIEW_WIDTH = 747 / 2 * 2
+PREVIEW_HEIGHT = 1050 / 2 * 2
 
 for i in range(27):
     for j in range(4):
@@ -38,12 +38,16 @@ CAMERA_ZOOM_SPEED = 0.03
 MODES = ["drag", "draw", "erase"]
 mode_index = 0
 
+ratio = (1,1)
+
 
 clock = pg.time.Clock()
 
 while True:
     clock.tick(60)
     screen.fill((46, 47, 47))
+
+    mouse_pos = [pg.mouse.get_pos()[0] / window.get_size()[0] * WIDTH, pg.mouse.get_pos()[1] / window.get_size()[1] * HEIGHT]
 
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -70,9 +74,9 @@ while True:
 
         if event.type == pg.MOUSEBUTTONDOWN:
             for card in cards:
-                card.click(event.pos, camera, event.button, mode_index)
+                card.click(mouse_pos, camera, event.button, mode_index)
             for card in preview_cards:
-                result = card.click(event.pos, sidebar_camera, event.button, mode_index)
+                result = card.click(mouse_pos, sidebar_camera, event.button, mode_index)
                 if result != None:
                     cards.append(result)
         if event.type == pg.MOUSEBUTTONUP:
@@ -91,7 +95,7 @@ while True:
         sidebar_camera.center_pos[1] = -len(preview_cards) * PREVIEW_HEIGHT + HEIGHT
 
     for card in cards:
-        card.update(camera)
+        card.update(camera, mouse_pos)
         card.draw(screen, camera)
 
     sidebar_transition += sidebar_dir

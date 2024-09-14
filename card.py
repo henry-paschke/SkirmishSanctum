@@ -64,12 +64,12 @@ class Card:
                     pg.draw.line(screen, (0, 0, 0), [int(pos[0] + self.circles[i - 1][0] * camera.zoom), int(pos[1] + self.circles[i - 1][1] * camera.zoom)], [int(pos[0] + self.circles[i][0] * camera.zoom), int(pos[1] + self.circles[i][1] * camera.zoom)], int(CIRCLE_RADIUS * 2 * camera.zoom))
                     pg.draw.circle(screen, (0, 0, 0), [int(pos[0] + self.circles[i][0] * camera.zoom), int(pos[1] + self.circles[i][1] * camera.zoom)], int((CIRCLE_RADIUS * 0.8) * camera.zoom))
 
-    def update(self, camera):
+    def update(self, camera, m_p):
         if self.anchored_mouse_pos:
-            mouse_pos = camera.screen_to_camera(pg.mouse.get_pos())
+            mouse_pos = camera.screen_to_camera(m_p)
             self.position = [mouse_pos[0] - self.anchored_mouse_pos[0], mouse_pos[1] - self.anchored_mouse_pos[1]]
         if self.drawing:
-            mouse_pos = camera.screen_to_camera(pg.mouse.get_pos())
+            mouse_pos = camera.screen_to_camera(m_p)
             new_pos = [int(mouse_pos[0] - self.position[0] + self.size[0] / 2), int(mouse_pos[1] - self.position[1] + self.size[1] / 2)]
             if self.circles == [] or self.circles[-1] == None:
                 self.circles.append(new_pos)
@@ -79,7 +79,7 @@ class Card:
                     self.circles.append(new_pos)
 
         if self.erasing:
-            mouse_pos = camera.screen_to_camera(pg.mouse.get_pos())
+            mouse_pos = camera.screen_to_camera(m_p)
             for i in range(len(self.circles)):
                 circle = self.circles[i]
                 if circle != None and (mouse_pos[0] - (self.position[0] + circle[0] - self.size[0] // 2)) ** 2 + (mouse_pos[1] - (self.position[1] + circle[1]  - self.size[1] // 2)) ** 2 < CIRCLE_RADIUS ** 2:
