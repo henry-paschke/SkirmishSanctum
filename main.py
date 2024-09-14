@@ -9,7 +9,9 @@ WIDTH = 1920
 HEIGHT = 1080
 
 pg.init()
-screen = pg.display.set_mode((WIDTH, HEIGHT))
+display_info = pg.display.Info()
+window = pg.display.set_mode((display_info.current_w / 2, display_info.current_h / 2), pg.RESIZABLE)
+screen = pg.Surface((WIDTH, HEIGHT))
 pg.display.set_caption("Skirmish Sanctum")
 
 
@@ -111,5 +113,8 @@ while True:
     if sidebar_transition != 1.0:
         for card in preview_cards[int(sidebar_camera.center_pos[1] / (PREVIEW_HEIGHT / 10)) : int(sidebar_camera.center_pos[1] / (PREVIEW_HEIGHT / 10) + range)]:
             card.draw(screen, sidebar_camera)
+
+
+    window.blit(pg.transform.scale(screen, window.get_size()), (0, 0))
 
     pg.display.update()
