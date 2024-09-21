@@ -2,3 +2,7 @@
 /main.spec
 /__pycache__
 *.pdf
+raw_data/
+*.png
+new_images/
+data/

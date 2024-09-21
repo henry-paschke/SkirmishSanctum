@@ -21,12 +21,12 @@ preview_cards = []
 PREVIEW_WIDTH = 747 / 2 * 2
 PREVIEW_HEIGHT = 1050 / 2 * 2
 
+faction = "Skorne"
+uncapitalized_faction = faction.lower()
+
 for i in range(27):
     for j in range(4):
-            #preview_cards.append(Preview_card(f'assets/circle/Circle_page_{i+1}_card_{j+1}_top.png', f'assets/circle/Circle_page_{i+1}_card_{j+1}_bottom.png', ((-WIDTH / 2) + int(PREVIEW_WIDTH / 2), (-HEIGHT / 2) + int(PREVIEW_HEIGHT / 2) + (i * 4 + j) * PREVIEW_HEIGHT / 10), (PREVIEW_WIDTH, PREVIEW_HEIGHT)))
-            #preview_cards.append(Preview_card(f'assets/skorne/Skorne_page_{i+1}_card_{j+1}_top.png', f'assets/skorne/Skorne_page_{i+1}_card_{j+1}_bottom.png', ((-WIDTH / 2) + int(PREVIEW_WIDTH / 2), (-HEIGHT / 2) + int(PREVIEW_HEIGHT / 2) + (i * 4 + j) * PREVIEW_HEIGHT / 10), (PREVIEW_WIDTH, PREVIEW_HEIGHT)))
-            preview_cards.append(Preview_card(f'assets/trollbloods/Trollbloods_page_{i+1}_card_{j+1}_top.png', f'assets/trollbloods/Trollbloods_page_{i+1}_card_{j+1}_bottom.png', ((-WIDTH / 2) + int(PREVIEW_WIDTH / 2), (-HEIGHT / 2) + int(PREVIEW_HEIGHT / 2) + (i * 4 + j) * PREVIEW_HEIGHT / 10), (PREVIEW_WIDTH, PREVIEW_HEIGHT)))
-
+            preview_cards.append(Preview_card(f'assets/{uncapitalized_faction}/{faction}_page_{i+1}_card_{j+1}_top.png', f'assets/{uncapitalized_faction}/{faction}_page_{i+1}_card_{j+1}_bottom.png', ((-WIDTH / 2) + int(PREVIEW_WIDTH / 2), (-HEIGHT / 2) + int(PREVIEW_HEIGHT / 2) + (i * 4 + j) * PREVIEW_HEIGHT / 10), (PREVIEW_WIDTH, PREVIEW_HEIGHT)))
 
 camera = Camera([0, 0], 1)
 sidebar_camera = Camera([0, 0], 1)
