@@ -6,3 +6,4 @@ raw_data/
 *.png
 new_images/
 data/
+dist/
