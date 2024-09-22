@@ -145,7 +145,6 @@ class Preview_card:
         pos = (pos[0] - img.get_width() // 2, pos[1] - img.get_height() // 2)
         screen.blit(img, pos, (0, 0, self.size[0], self.size[1] / 10))
         
-
     def click(self, pos, camera, button, mode_index):
         if not self.check_is_colliding(pos, camera):
             return

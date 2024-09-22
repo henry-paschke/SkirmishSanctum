@@ -8,7 +8,7 @@ PREVIEW_HEIGHT = 1050 / 2
 
                 
 class Folder:
-    def __init__(self, folder_path, camera, cards, position):
+    def __init__(self, folder_path, camera, cards, position, text):
         self.folder_path = folder_path
         self.camera = camera
         self.cards = [Preview_card(f, f.replace("front", "back"), [position[0], position[1]], (PREVIEW_WIDTH, PREVIEW_HEIGHT * 0.1)) for f in cards]

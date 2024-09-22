@@ -26,12 +26,14 @@ uncapitalized_faction = faction.lower()
 
 for i in range(27):
     for j in range(4):
-            preview_cards.append(Preview_card(f'assets/{uncapitalized_faction}/{faction}_page_{i+1}_card_{j+1}_top.png', f'assets/{uncapitalized_faction}/{faction}_page_{i+1}_card_{j+1}_bottom.png', ((-WIDTH / 2) + int(PREVIEW_WIDTH / 2), (-HEIGHT / 2) + int(PREVIEW_HEIGHT / 2) + (i * 4 + j) * PREVIEW_HEIGHT / 10), (PREVIEW_WIDTH, PREVIEW_HEIGHT)))
+            preview_cards.append(Preview_card(f'new_images/{uncapitalized_faction}/{faction}_page_{i+1}_card_{j+1}_top.png', f'new_images/{uncapitalized_faction}/{faction}_page_{i+1}_card_{j+1}_bottom.png', ((-WIDTH / 2) + int(PREVIEW_WIDTH / 2), (-HEIGHT / 2) + int(PREVIEW_HEIGHT / 2) + (i * 4 + j) * PREVIEW_HEIGHT / 10), (PREVIEW_WIDTH, PREVIEW_HEIGHT)))
+
 
 camera = Camera([0, 0], 1)
 sidebar_camera = Camera([0, 0], 1)
 sidebar_transition = 0.0
 sidebar_dir = 0
+SIDEBAR_SPEED = 15
 CAMERA_SPEED = 20
 CAMERA_ZOOM_SPEED = 0.03
 
@@ -76,6 +78,9 @@ while True:
                 for card in cards.copy():
                     if card.delete_check(mouse_pos, camera):
                         cards.remove(card)
+
+        if event.type == pg.MOUSEWHEEL:
+            sidebar_camera.move([0, -SIDEBAR_SPEED * event.y])
 
         if event.type == pg.MOUSEBUTTONDOWN:
             for card in cards:
