@@ -36,6 +36,18 @@ class Vector2:
         """
         self.x: float = x
         self.y: float = y
+
+    def __neg__(self) -> Type['Vector2']:
+        """
+        Returns the negation of the vector.
+        """
+        return Vector2(-self.x, -self.y)
+
+    def __pos__(self) -> Type['Vector2']:
+        """
+        Returns the positive of the vector (essentially a copy).
+        """
+        return Vector2(+self.x, +self.y)
     
     def __add__(self, other : Type['Vector2']) -> Type['Vector2']:
         """
@@ -78,13 +90,23 @@ class Vector2:
         Returns a string that contains the attributes of the vector.
         
         """
-        return "Vector2 (" + str(self.x) + ", " + str(self.y) + ")"
+        return "Vector2(" + str(self.x) + ", " + str(self.y) + ")"
 
     def get_tuple(self) -> tuple[float]:
         """
         Returns the vector as an (x,y) tuple.
         """
         return (self.x, self.y)
+    
+    def from_tuple(tuple : tuple[float]) -> Type['Vector2']:
+        """
+        Constructs a vector from a tuple of floats.
+
+        Parameters:
+            tuple (tuple[float]): The tuple to convert to a Vector. 
+                Only the first two indices will be considered.
+        """
+        return Vector2(tuple[0], tuple[1])
     
     def rotate(self, angle : float) -> Type['Vector2']:
         """

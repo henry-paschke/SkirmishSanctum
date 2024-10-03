@@ -128,6 +128,9 @@ class Card:
         self.flipped = not self.flipped
         self.transition_percentage = 1.0
 
+    def get_height(self):
+        return self.size[1]
+
 
 class Preview_card:
     def __init__(self, front_path, back_path, pos, size):
@@ -143,7 +146,7 @@ class Preview_card:
         pos = camera.camera_to_screen(self.position)
         img = pg.transform.scale(self.front_img, [self.size[0] * camera.zoom, self.size[1] * camera.zoom])
         pos = (pos[0] - img.get_width() // 2, pos[1] - img.get_height() // 2)
-        screen.blit(img, pos, (0, 0, self.size[0], self.size[1] / 10))
+        screen.blit(img, pos, (0, 0, self.size[0] - 90, self.size[1] / 10))
         
     def click(self, pos, camera, button, mode_index):
         if not self.check_is_colliding(pos, camera):
@@ -165,4 +168,8 @@ class Preview_card:
         if left < pos[0] < right and top < pos[1] < bottom:
             return True
         return False
+    
+
+    def get_height(self):
+        return self.size[1] / 10
     
